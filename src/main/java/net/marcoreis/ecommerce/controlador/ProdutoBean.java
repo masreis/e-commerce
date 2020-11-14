@@ -76,10 +76,6 @@ public class ProdutoBean extends BaseBean {
 								.getInputstream());
 				getProduto().setEspecificacaoFabricante(dados);
 			}
-			if (getFoto() != null && getFoto().getSize() > 0L) {
-				byte[] arrayOfByte = IOUtils
-						.toByteArray(getFoto().getInputstream());
-			}
 			getProduto().setDataAtualizacao(new Date());
 			this.produtoService
 					.salvar((IPersistente) getProduto());
