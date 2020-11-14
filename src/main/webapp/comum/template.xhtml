@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<c:set var="ctx"
+	value="#{facesContext.externalContext.request.contextPath}" />
+
+<h:head>
+	<link href="${ctx}/comum/estilo/geral.css" type="text/css"
+		rel="stylesheet" />
+
+	<title>e-commerce</title>
+
+</h:head>
+
+<h:body>
+	<f:view>
+
+		<div id="header">
+			<ul class="menu">
+				<li><a class="link" href="${ctx}/publico/busca.faces">Busca</a></li>
+				<li><a class="link" href="${ctx}/paginas/categorias.faces">Categoria</a></li>
+				<li><a class="link" href="${ctx}/paginas/produtos.faces">Produto</a></li>
+				<li><a class="link" href="${ctx}/paginas/usuarios.faces">Usuário</a></li>
+			</ul>
+		</div>
+
+		<div id="content" class="content">
+			<ui:insert name="body">Body</ui:insert>
+		</div>
+
+		<p:spacer height="1px" />
+
+		<div id="footer">
+			<ui:insert name="rodape">
+				<p:panel>
+					<p:outputLabel rendered="#{not empty loginBean.cliente.nome}"
+						value="#{loginBean.cliente.nome} (#{loginBean.cliente.email})" />
+					<p:outputLabel rendered="#{empty loginBean.cliente.nome}"
+						value="Nenhum usuário selecionado" />
+				</p:panel>
+			</ui:insert>
+		</div>
+
+	</f:view>
+
+</h:body>
+
+</html>

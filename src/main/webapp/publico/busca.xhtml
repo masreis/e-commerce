@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/comum/template.xhtml">
+
+	<title>Busca Livre de Produtos</title>
+
+	<ui:define name="body">
+
+		<h:form id="formPesquisa">
+			<p:messages id="messages" />
+			<p:panel header="Busca Livre"
+				style="margin-left: 20%; margin-right: 20%;">
+				<p:panel>
+					<div align="center">
+						<p:inputText value="#{buscaLivreProdutoBean.consulta}" size="60"
+							id="txtConsulta" label="Consulta">
+							<f:validateLength minimum="1" />
+						</p:inputText>
+
+						<p:watermark for="txtConsulta" value="Consulte uma palavra-chave" />
+
+						<p:commandButton value="Consultar"
+							update="messages,painelDocs,painelStatus" ajax="true"
+							actionListener="#{buscaLivreProdutoBean.consultar()}"
+							icon="ui-icon-search"
+							onclick="tblDocsWidget.getPaginator().setPage(0);" />
+					</div>
+				</p:panel>
+
+				<p:spacer height="3px" />
+
+				<p:panel id="painelDocs"
+					rendered="#{not empty buscaLivreProdutoBean.consulta}">
+					<p:dataTable id="tblDocs" value="#{buscaLivreProdutoBean.docs}"
+						tableStyle="table-layout:auto;width:100%;"
+						rendered="#{not empty buscaLivreProdutoBean.docs}"
+						widgetVar="tblDocsWidget" paginator="true"
+						paginatorPosition="bottom" var="doc" rows="20"
+						paginatorAlwaysVisible="false" lazy="true">
+						<p:ajax event="page" update=":formPesquisa:painelStatus" />
+
+						<p:column style="width: 45px; ">
+							<f:facet name="header">
+								<p:outputLabel />
+							</f:facet>
+							<p:commandButton oncomplete="PF('dlgDetalheDocumento').show();"
+								update="detalheDocumento" icon="ui-icon-search">
+								<!-- 								<p:graphicImage value="/imagens/view.png" /> -->
+							</p:commandButton>
+
+							<p:dialog id="detalheDocumento" widgetVar="dlgDetalheDocumento"
+								closeOnEscape="true" dynamic="true" header="Detalhes"
+								width="500" height="100">
+								<h:outputLabel escape="false"
+									value="#{buscaLivreProdutoBean.descricaoFormatada}"
+									style="white-space: normal" />
+							</p:dialog>
+
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Código" />
+							</f:facet>
+							<p:outputLabel escape="false" value="#{doc.get('produtoId')}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Produto" />
+							</f:facet>
+							<p:outputLabel escape="false" value="#{doc.get('produtoNome')}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Categoria" />
+							</f:facet>
+							<p:outputLabel escape="false" value="#{doc.get('categoriaNome')}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Preço" />
+							</f:facet>
+							<p:outputLabel escape="false" value="#{doc.get('produtoPreco')}" />
+						</p:column>
+					</p:dataTable>
+
+					<p:outputLabel
+						rendered="#{empty buscaLivreProdutoBean.docs and not empty buscaLivreProdutoBean.consulta}"
+						value="Nenhum documento encontrado para o argumento pesquisado" />
+
+				</p:panel>
+
+				<p:spacer height="3px"
+					rendered="#{buscaLivreProdutoBean.docs.rowCount > 0 and not empty buscaLivreProdutoBean.consulta}" />
+
+				<p:panel
+					rendered="#{buscaLivreProdutoBean.docs.rowCount > 0 and not empty buscaLivreProdutoBean.consulta}"
+					id="painelStatus">
+					<p:outputLabel
+						value="Duração da consulta: #{buscaLivreProdutoBean.duracaoBusca} segundos. " />
+					<p:outputLabel
+						value="Quantidade de itens encontrados: #{buscaLivreProdutoBean.docs.rowCount}." />
+				</p:panel>
+
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

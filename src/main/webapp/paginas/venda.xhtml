@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/comum/template.xhtml">
+
+	<ui:define name="body">
+		<h:form id="formulario">
+			<p:messages id="messages" />
+
+			<p:spacer height="3px" />
+
+			<p:panel header="Venda" style="margin-left: 24%; margin-right: 24%;">
+
+				<p:panelGrid columns="2" styleClass="semBorda">
+
+					<p:outputLabel value="Produto:" />
+					<p:selectOneMenu value="#{vendaBean.produto}" label="Produto"
+						converter="#{produtoConverter}">
+						<f:selectItem itemLabel="" itemValue="" />
+						<f:selectItems value="#{vendaBean.produtos}" var="item"
+							itemLabel="#{item.nome}" itemValue="#{item}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Quantidade:" />
+					<p:inputText value="#{vendaBean.quantidade}" />
+
+				</p:panelGrid>
+
+				<div style="padding: 10px;">
+					<p:commandButton actionListener="#{vendaBean.adicionarItem()}"
+						value="Adicionar" type="submit" update="tabelaItens,messages" />
+				</div>
+
+				<p:separator />
+
+				<p:dataTable var="item" value="#{vendaBean.itens}" id="tabelaItens">
+					<p:column headerText="Nome">
+						<h:outputText value="#{item.produto.nome}" />
+					</p:column>
+					<p:column headerText="Quantidade">
+						<h:outputText value="#{item.quantidade}" />
+					</p:column>
+					<p:column headerText="Unitário">
+						<h:outputText value="#{item.produto.preco}">
+							<f:convertNumber locale="pt_BR" type="currency" />
+						</h:outputText>
+					</p:column>
+				</p:dataTable>
+
+
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" update="messages"
+						actionListener="#{vendaBean.salvar()}" icon="ui-icon-disk" />
+				</f:facet>
+
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

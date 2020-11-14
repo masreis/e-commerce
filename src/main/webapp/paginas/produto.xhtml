@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/comum/template.xhtml">
+
+	<ui:define name="body">
+
+		<f:metadata>
+			<f:viewParam name="id" value="#{produtoBean.produto}" />
+		</f:metadata>
+
+		<h:form enctype="multipart/form-data" acceptcharset="ISO-8859-1"
+			lang="pt_BR">
+			<p:messages id="messages" />
+
+			<p:spacer height="3px" />
+
+
+			<p:panel header="Produto"
+				style="margin-left: 14%; margin-right: 14%;">
+
+				<h:inputHidden value="#{produtoBean.produto.id}" />
+
+				<p:panelGrid columns="2">
+
+					<p:outputLabel value="ID:" />
+					<p:inputText value="#{produtoBean.produto.id}" disabled="true" />
+
+					<!-- rendered="#{produtoBean.produto.id > 0} -->
+
+					<p:outputLabel value="Nome:" />
+					<p:inputText value="#{produtoBean.produto.nome}" size="50"
+						id="txtNome" requiredMessage="Informe o nome do produto"
+						required="true" label="Nome do produto">
+						<f:validateLength minimum="5" maximum="100" for="txtNome" />
+					</p:inputText>
+
+					<p:outputLabel value="Preço (R$):" />
+					<p:inputText value="#{produtoBean.produto.preco}" id="txtValor"
+						requiredMessage="Informe o preço do produto" required="true"
+						label="Valor do produto">
+						<f:convertNumber locale="pt_BR" />
+						<f:validateDoubleRange minimum="1" for="txtValor" />
+					</p:inputText>
+
+					<p:outputLabel value="Descrição:" />
+					<p:inputTextarea value="#{produtoBean.produto.descricao}" cols="50"/>
+
+					<p:outputLabel value="Arquivo da especificação do fabricante" />
+					<p:fileUpload value="#{produtoBean.especificacaoFabricante}"
+						id="uploadEspecificacaoFabricante" mode="simple" />
+
+					<p:outputLabel value="Download da especificação do fabricante" />
+					<p:commandButton icon="ui-icon-arrowthickstop-1-s" ajax="false">
+						<p:fileDownload
+							value="#{produtoBean.downloadEspecificacaoFabricante}" />
+					</p:commandButton>
+
+					<p:outputLabel value="Arquivo da foto" />
+					<p:fileUpload value="#{produtoBean.foto}" mode="simple"
+						id="uploadfotoProduto" />
+
+					<p:outputLabel value="Foto" rendered="#{produtoBean.existeFoto}" />
+					<p:graphicImage cache="false" rendered="#{produtoBean.existeFoto}"
+						value="#{imagemProdutoBean.conteudoImagem}">
+						<f:param value="#{produtoBean.produto.id}" name="id" />
+					</p:graphicImage>
+
+					<p:outputLabel value="Categoria:" />
+					<p:selectOneMenu >
+						<f:selectItem itemLabel="" itemValue="" />
+						<f:selectItems value="#{categoriaBean.categorias}" var="item"
+							itemLabel="#{item.nome}" itemValue="#{item}" />
+					</p:selectOneMenu>
+
+				</p:panelGrid>
+
+				<p:spacer height="6px" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" ajax="false"
+						actionListener="#{produtoBean.salvar}" icon="ui-icon-disk"
+						update="messages" />
+					<p:commandButton value="Voltar"
+						action="produtos?faces-redirect=true" ajax="false"
+						immediate="true" icon="ui-icon-arrowreturnthick-1-w" />
+				</f:facet>
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

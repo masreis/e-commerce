@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/comum/template.xhtml">
+
+	<ui:define name="body">
+
+		<h:form id="formulario">
+
+			<p:messages id="messages" />
+
+			<p:spacer height="3px" />
+
+			<p:panel header="Produto"
+				style="margin-left: 24%; margin-right: 24%;">
+
+				<p:dataTable var="item" value="#{produtoBean.produtos}" rows="10"
+					paginator="true" paginatorAlwaysVisible="false" id="tabelaProdutos">
+					<p:column headerText="Nome">
+						<h:outputText value="#{item.nome}" />
+					</p:column>
+					<p:column headerText="Preço">
+						<h:outputText value="#{item.preco}">
+							<f:convertNumber locale="pt_BR" type="currency" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Categoria">
+						<h:outputText value="#{produtoBean.categorias(item)}" />
+					</p:column>
+					<p:column style="width: 90px;">
+						<p:commandButton type="submit" icon="ui-icon-pencil"
+							action="produto?faces-redirect=true&amp;includeViewParams=true"
+							ajax="false">
+							<f:setPropertyActionListener target="#{produtoBean.produto}"
+								value="#{item}" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-trash"
+							action="#{produtoBean.excluir(item)}"
+							update="tabelaProdutos,:formulario:messages" />
+					</p:column>
+				</p:dataTable>
+
+				<p:spacer height="6px" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo" action="produto?faces-redirect=true"
+						ajax="false" icon="ui-icon-document" />
+				</f:facet>
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

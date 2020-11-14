@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/comum/template.xhtml">
+
+	<ui:define name="body">
+		<h:form>
+			<p:messages id="messages" />
+
+			<p:spacer height="3px" />
+
+			<p:panel header="Bem-vindo, #{loginBean.cliente.nome}"
+				style="margin-left: 34%; margin-right: 34%;">
+
+
+				<div align="center">
+					<p:outputLabel value="e-commerce" />
+
+				</div>
+
+
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

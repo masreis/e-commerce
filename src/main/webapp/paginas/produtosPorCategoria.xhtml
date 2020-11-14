@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/comum/template.xhtml">
+
+	<ui:define name="body">
+		<h:form>
+			<p:messages id="messages" />
+
+			<p:spacer height="3px" />
+
+			<p:panel header="Produtos por categoria"
+				style="margin-left: 24%; margin-right: 24%;">
+
+				<p:panelGrid columns="2" styleClass="semBorda">
+
+					<p:outputLabel value="Categoria:" />
+					<p:selectOneMenu value="#{produtoBean.produto.categoria.id}"
+						valueChangeListener="#{produtoBean.carregarProdutosPorCategoria}">
+						<f:selectItem itemLabel="" itemValue="" />
+						<f:selectItems value="#{categoriaBean.categorias}" var="item"
+							itemLabel="#{item.nome}" itemValue="#{item.id}" />
+						<p:ajax event="change" update="tabelaProdutos" />
+					</p:selectOneMenu>
+
+				</p:panelGrid>
+
+				<p:spacer height="6px" />
+
+				<p:dataTable var="item" value="#{produtoBean.produtos}"
+					id="tabelaProdutos" sortBy="#{item.nome}" rows="10"
+					paginator="true" paginatorAlwaysVisible="false"
+					emptyMessage="Nenhum produto para esta categoria">
+					<p:column headerText="Nome" sortBy="#{item.nome}">
+						<h:outputText value="#{item.nome}" />
+					</p:column>
+					<p:column headerText="Preço" sortBy="#{item.preco}">
+						<h:outputText value="#{item.preco}">
+							<f:convertNumber locale="pt_BR" type="currency" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Categoria" sortBy="#{item.categoria.nome}">
+						<h:outputText value="#{item.categoria.nome}" />
+					</p:column>
+				</p:dataTable>
+
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

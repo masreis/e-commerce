@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/comum/template.xhtml">
+
+	<ui:define name="body">
+
+		<f:metadata>
+			<f:viewParam name="id" value="#{categoriaBean.categoria}" />
+		</f:metadata>
+
+		<h:form>
+			<p:messages id="messages" />
+
+			<p:spacer height="3px" />
+
+			<p:panel header="Categoria"
+				style="margin-left: 24%; margin-right: 24%;">
+
+				<h:inputHidden value="#{categoriaBean.categoria.id}" />
+
+				<p:panelGrid columns="2">
+
+					<p:outputLabel value="ID:"
+						rendered="#{categoriaBean.categoria.id > 0}" />
+					<p:inputText value="#{categoriaBean.categoria.id}" disabled="true"
+						rendered="#{categoriaBean.categoria.id > 0}" />
+
+					<p:outputLabel value="Nome:" />
+					<p:inputText value="#{categoriaBean.categoria.nome}" />
+
+				</p:panelGrid>
+
+				<p:spacer height="6px" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" ajax="false"
+						actionListener="#{categoriaBean.salvar()}" icon="ui-icon-disk" />
+					<p:commandButton value="Voltar" type="submit" action="categorias"
+						ajax="false" icon="ui-icon-arrowreturnthick-1-w" />
+				</f:facet>
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

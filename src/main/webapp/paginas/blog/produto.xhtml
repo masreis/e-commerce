@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>e-commerce</title>
+
+	<style>
+.ui-widget,.ui-widget .ui-widget .ui-panel-title {
+	font-size: 90% !important;
+}
+</style>
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:messages id="messages" />
+
+		<p:spacer height="6px" />
+
+		<p:panel header="Produto" style="margin-left: 30%; margin-right: 30%;">
+			<p:panelGrid columns="2">
+
+				<p:outputLabel value="Nome:" />
+				<p:inputText value="#{produtoBean.produto.nome}" />
+
+				<p:outputLabel value="Categoria:" />
+				<p:selectOneMenu value="#{produtoBean.produto.categoria.id}">
+					<f:selectItems value="#{categoriaBean.categorias}" var="item"
+						itemLabel="#{item.nome}" itemValue="#{item.id}" />
+				</p:selectOneMenu>
+
+			</p:panelGrid>
+
+			<f:facet name="footer">
+				<p:commandButton value="Salvar" ajax="false" icon="ui-icon-disk" />
+			</f:facet>
+		</p:panel>
+
+	</h:form>
+
+</h:body>
+
+</html>
