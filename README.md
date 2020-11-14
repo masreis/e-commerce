@@ -23,7 +23,7 @@ Nosso projeto de e-commerce conta com uma base de dados que pode ser usada nos t
 
 Comece criando a base de dados no MySQL com o comando `mysql -u root -p -e "create database ecommerce"`. Depois, execute o comando de importação `mysql -u root -p ecommerce < dump.sql`. Apenas se certifique de indicar o caminho correto do arquivo `dump.sql`, que deve estar no diretório `src/test/resources/`, dentro da pasta do projeto `e-commerce`. Com isso, as tabelas serão criadas e populadas com valores fictícios. O parâmetro `-p` do MySQL é opcional, usado para solicitar a senha para o usuário.
 
-Foram criadas classes de teste para carregar algumas tabelas, como a de vendas e de clientes. As classes são `CriarVendasTest`, `CriarClientesTeste` e `AlterarPrecoProdutoTest`. Veja que os nomes dos clientes foram criados com caracteres aleatórios, bem como os preços dos produtos, que não representam o valor real de mercado. A classe `AlterarPrecoProdutoTest` muda os preços dos produtos e pode ser usada para simular um ambiente real, onde os valores são de fato alterados durante a operação.
+Foram criadas classes de teste para carregar algumas tabelas, como a de vendas e de clientes. As classes são `CriarVendasTest` e `AlterarPrecoProdutoTest`. Veja que os nomes dos clientes foram criados com caracteres aleatórios, bem como os preços dos produtos, que não representam o valor real de mercado. A classe `AlterarPrecoProdutoTest` muda os preços dos produtos e pode ser usada para simular um ambiente real, onde os valores são de fato alterados durante a operação.
 
 Na sequência, temos de criar o índice no Lucene para esta base de dados inicial. A classe que indexa os dados do MySQL é `IndexadorProdutoTest`. Para executá-la no Eclipse, use a opção *Run as JUnit Test*.
 
