@@ -23,7 +23,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<version.war.plugin>2.1.1</version.war.plugin>
 		<lucene.version>6.6.2</lucene.version>
-		<hibernate.version>5.2.6.Final</hibernate.version>
+		<hibernate.version>5.3.20.Final</hibernate.version>
 		<hibernate.entitymanager.version>5.2.6.Final</hibernate.entitymanager.version>
 	</properties>
 
