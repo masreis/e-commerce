@@ -7,7 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -33,7 +34,7 @@ import org.apache.lucene.util.BytesRef;
 
 public class UtilIndice {
 	private static Logger logger =
-			Logger.getLogger(UtilIndice.class);
+			LogManager.getLogger(UtilIndice.class);
 
 	private IndexWriter writer;
 

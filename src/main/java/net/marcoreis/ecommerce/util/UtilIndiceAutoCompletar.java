@@ -3,7 +3,8 @@ package net.marcoreis.ecommerce.util;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.DirectoryReader;
@@ -16,7 +17,7 @@ import org.apache.lucene.store.FSDirectory;
 
 public class UtilIndiceAutoCompletar {
 	private static Logger logger =
-			Logger.getLogger(UtilIndiceAutoCompletar.class);
+			LogManager.getLogger(UtilIndiceAutoCompletar.class);
 
 	public void criaIndexInfixAutoCompletar() {
 		try {

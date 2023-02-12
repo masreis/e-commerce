@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import net.marcoreis.ecommerce.controlador.LoginBean;
 import net.marcoreis.ecommerce.entidades.Cliente;
@@ -21,7 +22,7 @@ import net.marcoreis.ecommerce.entidades.Cliente;
 @WebFilter(filterName = "FiltroAcesso",
 		urlPatterns = { "/paginas/*" })
 public class FiltroAcesso implements Filter {
-	private static Logger logger = Logger.getLogger("historico");
+	private static Logger logger = LogManager.getLogger("historico");
 
 	public void init(FilterConfig filterConfig)
 			throws ServletException {

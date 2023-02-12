@@ -4,14 +4,16 @@ import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import net.marcoreis.ecommerce.entidades.Cliente;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BaseBean implements Serializable {
 	private static final long serialVersionUID =
 			-5895396595360064610L;
 
 	protected static final Logger logger =
-			Logger.getLogger(BaseBean.class);
+			LogManager.getLogger(BaseBean.class);
 
 	protected static final String MENSAGEM_SUCESSO_GRAVACAO =
 			"Dados gravados com sucesso";

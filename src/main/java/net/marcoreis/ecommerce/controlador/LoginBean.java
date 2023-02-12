@@ -4,10 +4,13 @@ import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.marcoreis.ecommerce.entidades.Cliente;
 import net.marcoreis.ecommerce.negocio.ClienteService;
 import net.marcoreis.ecommerce.util.IPersistente;
-import org.apache.log4j.Logger;
 
 @SessionScoped
 @ManagedBean
@@ -16,7 +19,7 @@ public class LoginBean extends BaseBean {
 			4169068378414919948L;
 
 	protected static final Logger logger =
-			Logger.getLogger(LoginBean.class);
+			LogManager.getLogger(LoginBean.class);
 
 	private boolean loggedIn;
 

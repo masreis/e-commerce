@@ -15,7 +15,8 @@ import net.marcoreis.ecommerce.entidades.Produto;
 import net.marcoreis.ecommerce.negocio.ProdutoService;
 import net.marcoreis.ecommerce.util.IPersistente;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
@@ -27,7 +28,7 @@ public class ProdutoBean extends BaseBean {
 			-6475971812078805662L;
 
 	private static Logger logger =
-			Logger.getLogger(ProdutoBean.class);
+			LogManager.getLogger(ProdutoBean.class);
 
 	private Produto produto;
 

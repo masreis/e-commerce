@@ -4,11 +4,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class TemporizadorIndiceProduto implements Runnable {
 	private static Logger logger =
-			Logger.getLogger(TemporizadorIndiceProduto.class);
+			LogManager.getLogger(TemporizadorIndiceProduto.class);
 
 	private final ScheduledExecutorService scheduler =
 			Executors.newScheduledThreadPool(1);

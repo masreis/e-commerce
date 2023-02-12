@@ -4,14 +4,15 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import net.marcoreis.ecommerce.negocio.GenericService;
 import net.marcoreis.ecommerce.util.IPersistente;
 
 public abstract class GenericConverter implements Converter {
 	private static Logger logger =
-			Logger.getLogger(GenericConverter.class);
+			LogManager.getLogger(GenericConverter.class);
 
 	public abstract Class<?> getClasse();
 
