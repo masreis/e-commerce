@@ -17,7 +17,7 @@ import net.marcoreis.ecommerce.entidades.Produto;
 import net.marcoreis.ecommerce.entidades.Venda;
 
 public class CriarVendasTest {
-	private static final int QUANTIDADE_VENDAS = 10000;
+	private static final int QUANTIDADE_VENDAS = 1000;
 	private EntityManager em;
 	private List<Produto> produtos;
 	private List<Cliente> clientes;
