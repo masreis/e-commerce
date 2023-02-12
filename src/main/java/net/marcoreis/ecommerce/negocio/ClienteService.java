@@ -15,7 +15,7 @@ public class ClienteService extends GenericService {
 			TypedQuery<Cliente> query = em.createQuery(sql,
 					Cliente.class);
 			query.setParameter("email", email);
-			Cliente cliente = query.getSingleResult();
+			Cliente cliente = query.getResultList().get(0);
 			return cliente;
 		} catch (Exception e) {
 			return null;

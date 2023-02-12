@@ -38,7 +38,7 @@ public class LoginBean extends BaseBean {
 		}
 		setLoggedIn(false);
 		errorMsg("Usuário inválido");
-		return null;
+		throw new RuntimeException("xxx");
 	}
 
 	@PostConstruct
