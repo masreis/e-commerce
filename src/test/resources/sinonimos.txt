@@ -1,0 +1,11 @@
+tb,tib,terabyte,terabytes
+gb,gib,gigabytes
+mb,mib,megabytes
+Televisao,Televisor,TV,TVs
+pendrive,pen drive
+veículo,carro,moto,bicicleta
+xone,xbox one
+hd,disco rígido
+jee,java ee,javaee,j2ee
+jogo,game
+wii,nintendo

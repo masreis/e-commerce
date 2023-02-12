@@ -146,4 +146,11 @@ public class ProdutoBean extends BaseBean {
 				.collect(Collectors.joining(","));
 	}
 
+
+	public String getCategorias(Produto produto) {
+		return produto.getCategorias().stream()
+				.map(Categoria::getNome)
+				.collect(Collectors.joining(","));
+	}
+
 }
